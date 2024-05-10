@@ -1,45 +1,61 @@
-import { Link } from 'react-router-dom';
+import { Link, Router } from 'react-router-dom';
 import Logo from '../assets/logo/planpeakHorizontal.jpg';
 
 function Header() {
   return (
-    <div className="flex items-center justify-between mx-20 py-1">
-      <ul className="flex p-1 items-center space-x-4 text-ppVeryLightGray">
+    <header className="flex items-center justify-between py-1">
+      <ul className="flex p-1 items-center space-x-4">
         <li>
           <Link to="/">
             <img style={{ width: '126px' }} src={Logo} alt="logo" />
           </Link>
         </li>
         <li>
-          <Link to="/">모임 참가하기</Link>
+          <Link to="/" className="p-2 text-ppVeryLightGray hover:text-ppBlue">
+            모임 참가하기
+          </Link>
           <ul className="hidden">
             <li>
-              <a href="#">모든 모임 둘러보기</a>
+              <Link to="/" className="p-2 text-ppVeryLightGray hover:text-ppBlue">
+                모든 모임 둘러보기
+              </Link>
             </li>
             <li>
-              <a href="#">내가 참여중인 모임</a>
+              <Link to="/" className="p-2 text-ppVeryLightGray hover:text-ppBlue">
+                내가 참여중인 모임
+              </Link>
             </li>
             <li>
-              <a href="#">나의 모임 이력</a>
+              <Link to="/" className="p-2 text-ppVeryLightGray hover:text-ppBlue">
+                나의 모임 이력
+              </Link>
             </li>
           </ul>
         </li>
         <li>
-          <Link to="/">모임 관리하기</Link>
+          <Link to="/" className="p-2 text-ppVeryLightGray hover:text-ppBlue">
+            모임 관리하기
+          </Link>
         </li>
         <li>
-          <Link to="/">플랜픽 소개</Link>
+          <Link to="/" className="p-2 text-ppVeryLightGray hover:text-ppBlue">
+            플랜픽 소개
+          </Link>
         </li>
       </ul>
-      <div className="flex p-2 space-x-4 font-semibold text-ppVeryLightGray">
-        <button className="bg-transparent hover:bg-ppBlue font-semibold hover:text-ppWhite py-1 px-4 border border-ppBlack hover:border-transparent rounded-full">
-          <Link to="/">로그인</Link>
-        </button>
-        <button className="bg-transparent hover:bg-ppBlue font-semibold hover:text-ppWhite py-1 px-4 border border-ppBlack hover:border-transparent rounded-full">
-          <Link to="/">회원가입하기</Link>
-        </button>
+      <div className="flex p-2 space-x-4">
+        <span className="overflow-hidden border border-solid border-ppVeryLightGray rounded-full hover:border-transparent hover:bg-ppBlue">
+          <Link to="/" className="block py-2 px-3 text-ppVeryLightGray hover:text-white">
+            로그인
+          </Link>
+        </span>
+        <span className="overflow-hidden border border-solid border-ppVeryLightGray rounded-full hover:border-transparent hover:bg-ppBlue">
+          <Link to="/" className="block py-2 px-3 text-ppVeryLightGray hover:text-white">
+            회원가입하기
+          </Link>
+        </span>
       </div>
-    </div>
+    </header>
   );
 }
 
