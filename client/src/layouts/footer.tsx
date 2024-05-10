@@ -1,13 +1,22 @@
+import { Link, Router } from 'react-router-dom';
+
 function Footer() {
   return (
-    <footer className="bg-gray-500 text-white text-center p-4">
-      <div>
-        <p className="text-center font-bold">플랜픽</p> <em/>
-        <p className="text-center font-bold">성장동행자</p> <br/>
-        <a className="text-white text-center font-bold">고객센터</a> <br/>
-        <a href="mailto:help@planpeak.co.kr" className="text-white text-center font-bold">help@planpeak.co.kr</a> <br/> <br/>
-        <a className="text-white text-center font-bold">개인정보 처리방침</a>
+    <footer className="bg-ppLightGray text-white py-5">
+      <div className="content">
+        <p className="py-2 text-xl text-center font-medium">
+          플랜픽 <span className="block">성장동행자</span>
+        </p>
+        <p className="my-3 text-center">
+          고객센터
+          <a href="mailto:help@planpeak.co.kr" className="block text-center">
+            help@planpeak.co.kr
+          </a>
+        </p>
       </div>
+      <a href="" className="block py-2 text-center">
+        개인정보 처리방침
+      </a>
     </footer>
   );
 }
