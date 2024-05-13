@@ -23,7 +23,7 @@ function LoginSelectPage() {
         <p className="text-ppVeryLightGray">
           회원이 아니신가요? &nbsp;
         </p>
-        <Link to={'/create-account'} 
+        <Link to={'/signup'} 
           className="text-ppBlue border-2 border-slate-950">
           Create an acount
         </Link>
