@@ -2,7 +2,9 @@
 // import Home from './pages/Home';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
-import SideNavCont from './layouts/SideNavCont';
+import MainPage from './pages/MainPage';
+
+
 
 function App() {
   return (
@@ -12,7 +14,7 @@ function App() {
         <div className="content">
           <h1>사이드바 없이 가득찬 레이아웃</h1>
         </div>
-        <SideNavCont></SideNavCont>
+        <MainPage />
       </main>
       <Footer />
     </>
