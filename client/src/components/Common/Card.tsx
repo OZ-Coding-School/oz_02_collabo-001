@@ -14,7 +14,7 @@ const Card: React.FC<CardProps> = ({
   title,
   content,
   imageUrl,
-  width = 300,
+  width = 200,
   height = 200,
   rounded = 0,
   info,
