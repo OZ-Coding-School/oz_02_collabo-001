@@ -1,4 +1,5 @@
 import PaginatedTable from '../components/Common/PaginatedTable';
+import BtnMedium from '../components/Common/buttons/BtnMedium';
 import Checkbox from '../components/Common/forms/Checkbox';
 import Input from '../components/Common/forms/Input';
 import Selectbox from '../components/Common/forms/Selectbox';
@@ -48,7 +49,7 @@ function MessageSetting() {
     <div className="SideNavCont">
       <SideNav></SideNav>
       <div className="container p-8">
-        <div className="flex py-2 px-4">
+        <div className="flex py-6 px-4">
           <span className="w-14 h-14 mx-2 my-3">
             <img src="" alt="" />
           </span>
@@ -57,11 +58,12 @@ function MessageSetting() {
             <p className="mt-1 text-s text-ppGray">모임 설명이 들어갑니다.</p>
           </div>
         </div>
-        <div className="px-2 py-4">
-          <h3 className="my-2 text-lg">일정별 자동 안내 예약 설정</h3>
-          <div className="p-2">
-            <PaginatedTable headers={tableHeader} data={tableCell}></PaginatedTable>
-          </div>
+        <div className="px-2 py-6">
+          <h3 className="mt-4 mb-5 text-lg font-bold">일정별 자동 안내 예약 설정</h3>
+          <PaginatedTable headers={tableHeader} data={tableCell}></PaginatedTable>
+        </div>
+        <div className="py-4 text-right">
+          <BtnMedium bgColor={'bg-ppGray'} text={'예약 설정 저장'} />
         </div>
       </div>
     </div>
