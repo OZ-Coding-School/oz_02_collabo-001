@@ -144,7 +144,7 @@ const MainPage: React.FC = () => {
                     <p className='mt-2 text-lg text-ppVeryLightGray'>어떤 클래스, 모임도 비즈니스로, <br />플랜픽과 함게 모임을 시작해볼까요?</p>
                 </div>
                 <div className='mt-10 mb-5 ml-5'>
-                <CardImage src='path_to_image' title="" />
+                <CardImage src='path_to_image' title=''/>
                 </div>
             </div>
           </div>
