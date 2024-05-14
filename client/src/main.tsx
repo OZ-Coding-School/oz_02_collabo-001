@@ -17,13 +17,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route element={<App />}>
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/meetingList" element={<MeetingList />} />
+          <Route path="/landing" element={<LandingPage />} />
+          <Route path="/loginselect" element={<LogInSelectPage />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<LogIn />} />
         </Route>
-      </Routes>
-      <Routes>
-        <Route path="/landing" element={<LandingPage />} />
-        <Route path="/loginselect" element={<LogInSelectPage />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<LogIn />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
