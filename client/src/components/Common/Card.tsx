@@ -25,7 +25,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className="overflow-hidden bg-yellow-100 shadow-lg"
+      className="overflow-hidden bg-[#d9d9d9] shadow-lg"
       style={{ width: `${width}px`, height: `${height}px`, ...roundedStyle }}
     >
       {imageUrl && <img src={imageUrl} alt="Card" className="w-full" />}
