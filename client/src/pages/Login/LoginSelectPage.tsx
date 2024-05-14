@@ -1,10 +1,7 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import BtnLarge from "../../components/Common/buttons/BtnLarge"
 
 function LogInSelectPage() {
-
-  // const navigate = useNavigate();
-
 
   return (
     <div className="w-5/12 py-10 px-20 mx-auto my-40 text-center content-center">
@@ -16,7 +13,6 @@ function LogInSelectPage() {
             text={'PlanPeak 로그인'} 
           />
         </Link>
-
         <BtnLarge 
           bgColor={'bg-yellow-300 my-4 text-ppBlack hover:bg-yellow-400'} 
           text={'카카오 로그인'}
