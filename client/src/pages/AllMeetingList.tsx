@@ -71,7 +71,7 @@ function renderItems(items: Event[])  {
 };
 
 
-function List () {
+function AllMeetingList () {
     return (
       <div>
         <div className='mt-10 flex items-start ml-60'>
@@ -93,4 +93,4 @@ function List () {
     )
 }
 
-export default List;
+export default AllMeetingList;
