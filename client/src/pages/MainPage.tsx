@@ -96,7 +96,7 @@ const MainPage: React.FC = () => {
                     </Link>
                 </span>
             </div>
-            <div className='mt-10 flex flex-col items-center justify-center bg-ppLightGray'>
+            <div className='mt-10 flex flex-col items-center justify-center bg-[#d9d9d9]'>
                 <h2 className="mt-10 text-ppGray text-3xl font-bold text-center">
                     곧 마감되는 모임
                 </h2>
