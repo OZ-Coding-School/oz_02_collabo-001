@@ -1,3 +1,4 @@
+
 import CardImage from '../components/Common/Card'
 import Input from '../components/forms/Input';
 
@@ -71,7 +72,7 @@ function renderItems(items: Event[])  {
 };
 
 
-function AllMeetingList () {
+function List () {
     return (
       <div>
         <div className='mt-10 flex items-start ml-60'>
@@ -93,4 +94,7 @@ function AllMeetingList () {
     )
 }
 
-export default AllMeetingList;
+
+
+export default List;
+
