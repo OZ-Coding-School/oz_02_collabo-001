@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './main.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LogInSelectPage from './pages/LogIn/LoginSelectPage.tsx';
+import LogInSelectPage from './pages/LogIn/LogInSelectPage.tsx';
 import SignUp from './pages/LogIn/SignUp.tsx';
 import LogIn from './pages/LogIn/LogIn.tsx';
 
