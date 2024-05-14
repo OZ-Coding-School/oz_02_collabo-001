@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className="content">
         <div className="content">
           <h1>사이드바 없이 가득찬 레이아웃</h1>
         </div>
