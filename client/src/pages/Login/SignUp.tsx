@@ -47,8 +47,8 @@ const SignUp: React.FunctionComponent = () => {
 
   return (
     <form onSubmit={handleSubmit}
-      className='w-6/12 h-screen py-10 px-20 mx-auto text-center content-center'>
-      <p className="text-ppBlack text-4xl font-bold">회원가입</p>
+      className='w-6/12 py-10 px-20 mx-auto my-40 text-center content-center'>
+      <p className="mb-10 text-ppBlack text-4xl font-bold">회원가입</p>
       <div>
         <div className="form-group">
           <input
@@ -59,7 +59,7 @@ const SignUp: React.FunctionComponent = () => {
             value={formValues.email}
             onChange={handleChange}
             required
-            className='w-full pt-10 pb-4 px-4 my-2 text-lg font-medium'
+            className='w-full py-4 px-4 my-2 text-lg font-medium'
           />
         </div>
 

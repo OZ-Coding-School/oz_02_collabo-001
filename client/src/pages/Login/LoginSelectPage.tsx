@@ -1,19 +1,22 @@
 import { Link, useNavigate } from "react-router-dom"
 import BtnLarge from "../../components/Common/buttons/BtnLarge"
 
-function LoginSelectPage() {
+function LogInSelectPage() {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
 
   return (
-    <div className="w-5/12 h-screen py-10 px-20 mx-auto text-center content-center">
+    <div className="w-5/12 py-10 px-20 mx-auto my-40 text-center content-center">
       <p className="text-ppBlack text-4xl font-bold">로그인</p>
       <div className="pt-10 pb-4">
-        <BtnLarge 
-          bgColor={'bg-ppBlue my-4 hover:bg-ppMoveBlue'} 
-          text={'PlanPeak 로그인'} 
-          onClick={() => { navigate('/login'); }}
-        />
+        <Link to={'/login'}>
+          <BtnLarge 
+            bgColor={'bg-ppBlue my-4 hover:bg-ppMoveBlue'} 
+            text={'PlanPeak 로그인'} 
+          />
+        </Link>
+
         <BtnLarge 
           bgColor={'bg-yellow-300 my-4 text-ppBlack hover:bg-yellow-400'} 
           text={'카카오 로그인'}
@@ -32,4 +35,4 @@ function LoginSelectPage() {
   )
 }
 
-export default LoginSelectPage
+export default LogInSelectPage
