@@ -1,7 +1,12 @@
 import { Link, Router } from 'react-router-dom';
 import Logo from '../assets/logo/planpeakHorizontal.jpg';
+import { useState } from 'react';
 
 function Header() {
+ 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState('');
+
   return (
     <header>
       <div className="content flex items-center justify-between py-1">
@@ -45,16 +50,38 @@ function Header() {
           </li>
         </ul>
         <div className="flex p-2 space-x-4">
-          <span className="overflow-hidden border border-solid border-ppVeryLightGray rounded-full hover:border-transparent hover:bg-ppBlue">
-            <Link to="/login" className="block py-2 px-3 text-ppVeryLightGray hover:text-white">
-              로그인
-            </Link>
-          </span>
-          <span className="overflow-hidden border border-solid border-ppVeryLightGray rounded-full hover:border-transparent hover:bg-ppBlue">
-            <Link to="/signup" className="block py-2 px-3 text-ppVeryLightGray hover:text-white">
-              회원가입하기
-            </Link>
-          </span>
+          {isLoggedIn ? (
+            <>
+              <span className="overflow-hidden rounded-full">
+                <Link to="/" className="block py-2 px-3 hover:text-white">
+                  {userName}
+                </Link>
+              </span>
+              <span className="overflow-hidden rounded-full">
+                <Link to="/mypage" className="block py-2 px-3 hover:text-white">
+                  마이페이지
+                </Link>
+              </span>
+              <span className="overflow-hidden rounded-full">
+                <Link to="/logout" className="block py-2 px-3 hover:text-white" onClick={() => setIsLoggedIn(false)}>
+                  로그아웃
+                </Link>
+              </span>
+            </>    
+          ) : (
+            <>
+              <span className="overflow-hidden border border-solid border-ppVeryLightGray rounded-full hover:border-transparent hover:bg-ppBlue">
+                <Link to="/login" className="block py-2 px-3 text-ppVeryLightGray hover:text-white">
+                  로그인
+                </Link>
+              </span>
+              <span className="overflow-hidden border border-solid border-ppVeryLightGray rounded-full hover:border-transparent hover:bg-ppBlue">
+                <Link to="/signup" className="block py-2 px-3 text-ppVeryLightGray hover:text-white">
+                  회원가입하기
+                </Link>
+              </span>
+            </>
+          )}  
         </div>
       </div>
     </header>
