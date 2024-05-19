@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './main.css';
@@ -14,7 +15,6 @@ import AdminMeetingList from './pages/admin/AdminMeetingList.tsx';
 import MessageSetting from './pages/admin/MessageSetting.tsx';
 import AllMeetingList from './pages/AllMeetingList.tsx';
 import UserMeetingList from './pages/user/UserMeetingList.tsx';
-import React from 'react';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
