@@ -74,41 +74,43 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
     event.preventDefault();
   }
 
-  const handleChangeEmail = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target;
-      setUserInfo ({
-        ...userInfo,
-        email: value
-      });
-      if (!emailRegEx.test(value)) {
-        alert(
-          "영문과 숫자 특수기호(-_.)를 조합하여 이메일 형식으로 작성해주세요.",
-        );
-        setIsEmail(false);
-      } else {
-        setIsEmail(true);
-      }
-    }, []
-  )
+  // const handleChangeEmail = useCallback(
+  //   (event: React.ChangeEvent<HTMLInputElement>) => {
+  //     event.preventDefault();
+  //     const { value } = event.target;
+  //     setUserInfo ({
+  //       ...userInfo,
+  //       email: value
+  //     });
+  //     if (!emailRegEx.test(value)) {
+  //       console.log(
+  //         "영문과 숫자 특수기호(-_.)를 조합하여 이메일 형식으로 작성해주세요.",
+  //       );
+  //       setIsEmail(false);
+  //     } else {
+  //       setIsEmail(true);
+  //     }
+  //   }, []
+  // )
 
-  const handleChangePasswordCheck = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target;
-      setUserInfo ({
-        ...userInfo,
-        passwordCheck: value
-      });
-      if (userInfo.password === value) {
-        setIsPasswordCheck(true);
-      } else {
-        alert(
-          "비밀번호가 일치하지 않습니다.",
-        );
-        setIsPasswordCheck(false);
-      }
-    }, []
-  )
+  // const handleChangePasswordCheck = useCallback(
+  //   (event: React.ChangeEvent<HTMLInputElement>) => {
+  //     event.preventDefault();
+  //     const { value } = event.target;
+  //     setUserInfo ({
+  //       ...userInfo,
+  //       passwordCheck: value
+  //     });
+  //     if (userInfo.password === value) {
+  //       setIsPasswordCheck(true);
+  //     } else {
+  //       console.log(
+  //         "비밀번호가 일치하지 않습니다.",
+  //       );
+  //       setIsPasswordCheck(false);
+  //     }
+  //   }, []
+  // )
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
@@ -127,7 +129,26 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
     }
   };
 
-  const handleClick = (event: any) => {
+  // const handleClick = async (event: any) => {
+  //   event.preventDefault();
+  //   try {
+  //     const response = await axios.post('https://101.79.9.36/planpeak/auth/register',
+  //     {
+  //       mem_email: userInfo.email,
+  //       mem_name: userInfo.name,
+  //       mem_password: userInfo.password,
+  //       mem_gender: userInfo.gender,
+  //       mem_birth: `${userInfo.year}-${userInfo.month}-${userInfo.day}`,
+  //       mem_address: userInfo.region,
+  //       mem_emailCheck: userInfo.emailAgreeCheck,
+  //       mem_marketingCheck: userInfo.marketingAgreeCheck,
+  //     }
+  //   )
+  //   } catch (error) {
+  //     console.log(error);
+  //   } 
+  // };
+  const handleClickSubmit = (event: any) => {
     event.preventDefault();
     axios.post('https://101.79.9.36/planpeak/auth/register',
     {
@@ -154,7 +175,7 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
   }; 
 
   return (
-    <div className='w-6/12 py-10 px-20 mx-auto my-40 text-center content-center'>
+    <div className='w-5/12 py-10 px-20 mx-auto my-40 text-center content-center'>
       <p className='mb-10 text-ppBlack text-4xl font-bold'>
       회원가입
       </p>
@@ -166,8 +187,8 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
           placeholder='Email'
           maxLength={100}
           value={userInfo.email}
-          onChange={handleChangeEmail}
-          className='w-full py-4 px-4 my-2 text-lg font-medium'
+          onChange={handleInput}
+          className='w-full py-4 px-4 my-4 mx-auto text-lg font-medium border border-solid border-gray-200 rounded'
           required
         />
 
@@ -179,7 +200,7 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
           maxLength={50}
           value={userInfo.name}
           onChange={handleInput}
-          className='w-full py-4 px-4 my-2 text-lg font-medium'
+          className='w-full py-4 px-4 my-4 text-lg font-medium border border-solid border-gray-200 rounded'
           required
         />
         <input 
@@ -190,7 +211,7 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
           maxLength={100}
           value={userInfo.password}
           onChange={handleInput}
-          className='w-full py-4 px-4 my-2 text-lg font-medium'
+          className='w-full py-4 px-4 my-2 text-lg font-medium border border-solid border-gray-200 rounded'
           required
         />
         {/* {passwordErr ? 
@@ -204,8 +225,8 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
           placeholder='비밀번호확인'
           maxLength={100}
           value={userInfo.passwordCheck}
-          onChange={handleChangePasswordCheck}
-          className='w-full py-4 px-4 my-2 text-lg font-medium'
+          onChange={handleInput}
+          className='w-full py-4 px-4 my-4 text-lg font-medium border border-solid border-gray-200 rounded'
           required
         />
         {/* {passwordErr ? 
@@ -223,6 +244,7 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
               id='male'
               name='gender'
               value='male'
+              className='my-auto'
               onChange={handleInput}
             />
             <label htmlFor='male'className='py-4 px-4 my-2'>남</label>
@@ -231,6 +253,7 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
               id='female'
               name='gender'
               value='femail'
+              className='my-auto'
               onChange={handleInput}
             />
             <label htmlFor='female' className='py-4 px-4 my-2'>여</label>
@@ -247,6 +270,7 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
             >
               <option
                 value=''
+                className='text-center'
               >
                 년
               </option>
@@ -263,6 +287,7 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
             >
               <option
                 value=''
+                className='text-center'
               >
                 월
               </option>
@@ -279,6 +304,7 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
             >
               <option
                 value=''
+                className='text-center'
               >
                 일
               </option>
@@ -302,6 +328,7 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
           >
             <option
               value=''
+              className='text-center'
             >
               지역
             </option>
@@ -322,7 +349,7 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
               // checked={userInfo.emailAgreeCheck}
               onChange={handleCheckbox}
               required
-              className='py-4 px-4 my-2'
+              className='py-4 px-4 my-2 content-center'
             />
             <label htmlFor="emailAgreeCheck"
             className='p-2'>이메일 수신 동의</label>
@@ -342,7 +369,7 @@ const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
           <button
             type='button'
             className='rounded w-full py-4 px-4 text-lg font-bold text-center bg-ppBlue my-6 text-ppWhite'
-            onClick={handleClick}
+            onClick={handleClickSubmit}
           >
             제출
           </button>
