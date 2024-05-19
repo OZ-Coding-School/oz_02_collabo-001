@@ -1,4 +1,5 @@
-import { useState } from "react"
+import axios from "axios";
+import { useCallback, useState } from "react"
 import { Link } from "react-router-dom";
 
 interface UserInfo {
@@ -16,22 +17,6 @@ interface UserInfo {
 }
 
 function SignUp() {
-  // const [email, setEmail] = useState<string>('');
-  // const [name, setName] = useState<string>('');
-  // const [password, setPassword] = useState<string>('');
-  // const [passwordCheck, setPasswordCheck] = useState<string>('');
-  // const [gender, setGender] = useState<string>('');
-  // const [year, setYear] = useState<string>('');
-  // const [month, setMonth] = useState<string>('');
-  // const [day, setDay] = useState<string>('');
-  // const [region, setRegion] = useState<string>('');
-  // const [emailAgreeCheck, setEmailAgreeCheck] = useState<boolean>(false);
-  // const [marketingAgreeCheck, setMarketingAgreeCheck] = useState<boolean>(false);
-
-  // const [emailErr, setEmailErr] = useState<boolean>(false);
-  // const [passwordErr, setPasswordErr] = useState<boolean>(false);
-  // const [passwordCorrect, setPasswordCorrect] = useState<boolean>();
-
 
 const [userInfo, setUserInfo] = useState<UserInfo>({
   email: '',
@@ -47,9 +32,13 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
   marketingAgreeCheck: false,
 });
 
+const [isEmail, setIsEmail] = useState<boolean>(false);
+const [isPassword, setIsPassword] = useState<boolean>(false);
+const [isPasswordCheck, setIsPasswordCheck] = useState<boolean>(false);
+
   const yearList = Array.from({ length: 94 }, (_, i) => i + 1930);
-  const monthList = Array.from({ length: 12 }, (_, i) => i + 1);
-  const dayList = Array.from({ length: 31 }, (_, i) => i + 1);
+  const monthList = Array.from({ length: 12 }, (_, i) => (i + 1).toString().padStart(2, '0'));
+  const dayList = Array.from({ length: 31 }, (_, i) => (i + 1).toString().padStart(2, '0'));
   const regionList : string[] = [
     "서울특별시",
     "인천광역시",
@@ -68,44 +57,58 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
     "경상남도",
     "제주도",
   ]
-  // // 이메일 포멧
-  // const emailRegEx =
-  //   /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
-  // // 최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자
+    // 아이디: 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
+  // 입력하지않을때 비밀번호: 필수 정보입니다.
+//비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
+  // 이메일 포멧: 첫글자(대소문자숫자), 중간(-_.대소문자숫자), @필수, .필수, 최상위 도메인 자리 2-3자
+  const emailRegEx =
+    /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
+
+  // 최소 8자 이상, 16자 이하, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자
+  // -> 영어, 숫자, 특수문자를 포함하여 8~16자의 비밀번호를 입력하세요.
   // const passwordRegex =
   //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/;
-  // const isPasswordCorrect = (password == passwordCheck)
-  // const isValid = (
-  //   email !== '' && name !== '' && password !== '' && isPasswordCorrect === true && 
-  //   gender !== '' && year !== '' && month !== '' && day !== '' && region !== '' &&
-  //   emailErr === false && passwordErr === false
-  // )
+  //   /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,}$/;
 
-  const handleSubmit =  async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
-    try {
-      console.log()
-    } catch (error) {
-      console.log(error);
-    }
   }
 
-  // const handleEmailRegex = () => {
-  //   if (!emailRegEx.test(email)) {
-  //     setEmailErr(true);
-  //     alert('d')
-  //   } else {
-  //     setEmailErr(false);
-  //   }
-  // }
+  const handleChangeEmail = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = event.target;
+      setUserInfo ({
+        ...userInfo,
+        email: value
+      });
+      if (!emailRegEx.test(value)) {
+        alert(
+          "영문과 숫자 특수기호(-_.)를 조합하여 이메일 형식으로 작성해주세요.",
+        );
+        setIsEmail(false);
+      } else {
+        setIsEmail(true);
+      }
+    }, []
+  )
 
-  // const handlePasswordRegex = () => {
-  //   if (!passwordRegex.test(password)) {
-  //     setPasswordErr(true);
-  //   } else {
-  //     setPasswordErr(false);
-  //   }
-  // }
+  const handleChangePasswordCheck = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = event.target;
+      setUserInfo ({
+        ...userInfo,
+        passwordCheck: value
+      });
+      if (userInfo.password === value) {
+        setIsPasswordCheck(true);
+      } else {
+        alert(
+          "비밀번호가 일치하지 않습니다.",
+        );
+        setIsPasswordCheck(false);
+      }
+    }, []
+  )
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
@@ -115,18 +118,39 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
     })
   }
 
-  const handleEmailAgree = () => {
-    if(userInfo.emailAgreeCheck = false) {
-      userInfo.emailAgreeCheck = true
-    }else {
-      userInfo.emailAgreeCheck = false
+  const handleCheckbox = (event: any) => {
+    const { name } = event.target;
+    if (event.target.checked) {
+      setUserInfo({ ...userInfo, [name]: true });
+    } else {
+      setUserInfo({ ...userInfo, [name]: false });
     }
   };
-  
-  const handleClick = () => {
-    console.log(userInfo)
-    // handleEmailRegex();
-    // handlePasswordRegex();
+
+  const handleClick = (event: any) => {
+    event.preventDefault();
+    axios.post('https://101.79.9.36/planpeak/auth/register',
+    {
+      mem_email: userInfo.email,
+      mem_name: userInfo.name,
+      mem_password: userInfo.password,
+      mem_gender: userInfo.gender,
+      mem_birth: `${userInfo.year}-${userInfo.month}-${userInfo.day}`,
+      mem_address: userInfo.region,
+      mem_emailCheck: userInfo.emailAgreeCheck,
+      mem_marketingCheck: userInfo.marketingAgreeCheck,
+    })
+    .then((result) => {
+      console.log('성공');
+      console.log(result);
+      alert('회원가입 성공');
+      <Link to="/login" />;
+    })
+    .catch((error) => {
+      alert('회원가입 실패')
+      console.log(error.response)
+      console.log(userInfo)
+    })
   }; 
 
   return (
@@ -134,7 +158,7 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
       <p className='mb-10 text-ppBlack text-4xl font-bold'>
       회원가입
       </p>
-      <form onChange={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input 
           type='text'
           id='email'
@@ -142,7 +166,7 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
           placeholder='Email'
           maxLength={100}
           value={userInfo.email}
-          onChange={handleInput}
+          onChange={handleChangeEmail}
           className='w-full py-4 px-4 my-2 text-lg font-medium'
           required
         />
@@ -180,7 +204,7 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
           placeholder='비밀번호확인'
           maxLength={100}
           value={userInfo.passwordCheck}
-          onChange={handleInput}
+          onChange={handleChangePasswordCheck}
           className='w-full py-4 px-4 my-2 text-lg font-medium'
           required
         />
@@ -190,11 +214,9 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
         } */}
 
         <div className="flex font-medium items-center">
-          <label htmlFor='gender' 
-            className='py-4 px-4 my-2 text-lg  text-ppGray'
-          >
+          <p className='py-4 px-4 my-2 text-lg  text-ppGray'>
             성별
-          </label>
+          </p>
           <div className='flex px-4 text-lg text-ppGray'>
             <input 
               type='radio'
@@ -225,9 +247,6 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
             >
               <option
                 value=''
-                disabled
-                hidden
-                selected
               >
                 년
               </option>
@@ -244,9 +263,6 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
             >
               <option
                 value=''
-                disabled
-                hidden
-                selected
               >
                 월
               </option>
@@ -263,9 +279,6 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
             >
               <option
                 value=''
-                disabled
-                hidden
-                selected
               >
                 일
               </option>
@@ -279,11 +292,9 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
         </div>
           
         <div className="flex">
-          <label htmlFor='region' 
-            className='py-4 px-4 my-2 text-lg font-medium text-ppGray'
-          >
+          <p className='py-4 px-4 my-2 text-lg font-medium text-ppGray'>
             지역
-          </label>
+          </p>
           <select id='region' name='region' value={userInfo.region}
            onChange={handleInput}
             className='py-4 px-4 my-2 text-lg text-ppBlack'
@@ -291,9 +302,6 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
           >
             <option
               value=''
-              disabled
-              hidden
-              selected
             >
               지역
             </option>
@@ -312,7 +320,7 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
               id="emailAgreeCheck"
               name="emailAgreeCheck"
               // checked={userInfo.emailAgreeCheck}
-              onChange={handleEmailAgree}
+              onChange={handleCheckbox}
               required
               className='py-4 px-4 my-2'
             />
@@ -324,13 +332,13 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
               type="checkbox"
               id="marketingAgreeCheck"
               name="marketingAgreeCheck"
-              onChange={handleEmailAgree}
+              onChange={handleCheckbox}
             />
             <label htmlFor="marketingAgreeCheck"
             className='p-2'>마케팅 정보 수신 동의</label>
           </div>
         </div>
-        <Link to={'/login'}>
+
           <button
             type='button'
             className='rounded w-full py-4 px-4 text-lg font-bold text-center bg-ppBlue my-6 text-ppWhite'
@@ -338,7 +346,7 @@ const [userInfo, setUserInfo] = useState<UserInfo>({
           >
             제출
           </button>
-        </Link>
+
       </form>   
     </div>
 
