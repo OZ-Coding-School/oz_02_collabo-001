@@ -5,28 +5,11 @@ import { useState, useEffect } from 'react';
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    // 메뉴 토글 함수
-    const toggleMenu = () => {
-      setIsMenuOpen(!isMenuOpen);
-    };
-
-    // 메뉴 열기/닫기 버튼에 이벤트 리스너 추가
-    const burger = document.querySelector('.navbar-burger');
-    burger?.addEventListener('click', toggleMenu);
-
-    // 컴포넌트 언마운트 시 이벤트 리스너 제거
-    return () => {
-      burger?.removeEventListener('click', toggleMenu);
-    };
-  }, [isMenuOpen]);
 
   return (
     <header>
       <div className="content flex items-center justify-between py-1">
-        <ul className={`flex p-1 items-center space-x-4 ${isMenuOpen ? "hidden" : "block"} md:block`}>
+        <ul className='flex p-1 items-center space-x-4'>
           <li>
             <Link to="/">
               <img style={{ width: '126px' }} src={Logo} alt="PlanPeak logo" />
@@ -60,19 +43,11 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link to="/about" className="p-2 text-ppVeryLightGray hover:text-ppBlue">
+            <Link to="/landing" className="p-2 text-ppVeryLightGray hover:text-ppBlue">
               플랜픽 소개
             </Link>
           </li>
         </ul>
-        <div className='lg:hidden'>
-            <button className='navbar-burger flex items-center text-blue-600 p-3'>
-              <svg className="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <title>Mobile menu</title>
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-              </svg>
-            </button>
-        </div>
         <div className='flex p-2 space-x-4 md:flex'>
           {isLoggedIn ? (
             <>
