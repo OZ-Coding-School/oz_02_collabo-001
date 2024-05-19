@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import CardImage from '../components/common/Card';
 import { useEffect } from 'react';
 import axios from 'axios';
+import Chip from '../components/create-meet/Chip';
 
 interface Category {
   name: string;
@@ -54,20 +55,20 @@ const events: Event[] = [
   },
 ];
 
-const renderItems = (items: Category[] | Event[]) => {
-  return items.map((item) => (
-    <li key={item.name} className="col text-left items-center">
-      <CardImage src={item.imageSrc} alt={item.altText || item.name} />
-      <span className="text-sm text-bold">{item.name}</span> <br />
-      {typeof item.date !== 'undefined' && (
-        <>
-          <span className="text-sm">{item.description}</span> <br />
-          <span className="text-sm">{item.date}</span>
-        </>
-      )}
-    </li>
-  ));
-};
+// const renderItems = (items: Category[] | Event[]) => {
+//   return items.map((item) => (
+//     <li key={item.name} className="col text-left items-center">
+//       <CardImage src={item.imageSrc} alt={item.altText || item.name} />
+//       <span className="text-sm text-bold">{item.name}</span> <br />
+//       {typeof item.date !== 'undefined' && (
+//         <>
+//           <span className="text-sm">{item.description}</span> <br />
+//           <span className="text-sm">{item.date}</span>
+//         </>
+//       )}
+//     </li>
+//   ));
+// };
 
 const MainPage = () => {
   useEffect(() => {
@@ -107,33 +108,44 @@ const MainPage = () => {
         </div>
         <div className="flex flex-col mt-10 items-center justify-center">
           <ul className="mt-10 grid grid-cols-4 gap-4 [&_span]:text-ppGray">
-            {renderItems(categories)}
+            {/* {renderItems(categories)} */}
           </ul>
+          <div className="flex">
+            <Chip name="운동" />
+            <Chip name="운동" />
+            <Chip name="운동" />
+            <Chip name="운동" />
+            <Chip name="운동" />
+            <Chip name="운동" />
+            <Chip name="운동" />
+            <Chip name="운동" />
+          </div>
+
           <span className="mt-10 overflow-hidden border border-solid border-ppVeryLightGray rounded-full hover:border-transparent hover:bg-ppBlue">
-            <Link
+            {/* <Link
               to="/"
               className="block py-2 px-3 text-ppVeryLightGray hover:text-white font-['Pretendard']"
             >
               더 많은 카테고리 보기
-            </Link>
+            </Link> */}
           </span>
         </div>
-        <div className="mt-10 flex flex-col items-center justify-center bg-[#d9d9d9]">
+        {/* <div className="mt-10 flex flex-col items-center justify-center bg-[#d9d9d9]">
           <h2 className="mt-10 text-ppGray text-3xl font-bold text-center">곧 마감되는 모임</h2>
           <ul className="mt-10 ml-2 grid grid-cols-4 gap-4">{renderItems(events)}</ul>
           <h2 className="mt-10 text-ppGray text-3xl font-bold text-center">참여를 기다리는 모임</h2>
           <ul className="mt-10 ml-2 grid grid-cols-4 gap-4">{renderItems(events)}</ul>
           <h2 className="mt-10 text-ppGray text-3xl font-bold text-center">요즘 핫한 모임</h2>
           <ul className="mt-10 ml-2 grid grid-cols-4 gap-4">{renderItems(events)}</ul>
-        </div>
-        <div className="mt-10 items-center text-center">
+        </div> */}
+        {/* <div className="mt-10 items-center text-center">
           <ul className="flex gap-2 items-center justify-center">
             <li className="w-50 h-30 bg-ppWhite border border-solid border-ppBlack text-left">
               광고배너
             </li>
             <li className="border border-solid border-ppBlack text-left">광고배너</li>
           </ul>
-        </div>
+        </div> */}
         <div className="mt-10 items-center text-center">
           <ul className="flex gap-2 text-center items-center justify-center">
             {/* {cards.map((card)=>(
