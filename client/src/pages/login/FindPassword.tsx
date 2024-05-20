@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-import BtnLarge from '../../components/common/buttons/BtnLarge';
-import Input from '../../components/common/forms/Input';
 
 function FindPassword() {
   return (
