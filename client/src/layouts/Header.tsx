@@ -139,7 +139,7 @@ function Header() {
             <li className='md:flex items-center'>
               <Link to="/user/meetinglist" className="p-2 text-ppVeryLightGray hover:text-ppBlue" onClick={() => {setShowSubMenu(!showSubMenu)}}>
                 모임 참가하기
-                {showSubMenu && <Dropdown />}
+                {/* showSubMenu && <Dropdown /> */}
               </Link>
             </li>
             <li>
